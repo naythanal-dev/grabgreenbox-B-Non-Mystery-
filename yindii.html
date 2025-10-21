@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grab GreenBox - Sustainable Meals in Singapore</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://img.restaurantsbrighton.co.uk/wp-content/uploads/2024/09/CZPSnMaw.jpeg?tr=w-1920,h-1080');
+            background-size: cover;
+            background-position: center;
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-[#FAFAF7] text-[#333333]">
+    <!-- IMPORTANT: Replace this URL with your Google Apps Script URL -->
+    <script>
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyhM3AyHNgH1QMkfcvdCqzZhP6d9lajsAHQcgJmBfCz9U_SeEGHNr4BV1krIJnYZjvd/exec';
+    </script>
+
+    <nav class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-[#00B14F] flex items-center justify-center">
+                    <i data-feather="shopping-bag" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
+                </div>
+                <span class="font-bold text-lg md:text-xl">Grab GreenBox</span>
+            </div>
+
+            <div class="hidden md:flex space-x-4">
+                <a href="#consumer" class="px-4 py-2 font-medium hover:text-[#00B14F]">For Consumers</a>
+                <a href="#partner" class="px-4 py-2 font-medium hover:text-[#00B14F]">For Partners</a>
+            </div>
+
+            <div class="hidden md:flex space-x-2">
+                <a href="#waitlist" class="px-4 py-2 bg-[#00B14F] text-white rounded-full font-medium hover:bg-green-600">Join Waitlist</a>
+                <a href="#partner" class="px-4 py-2 border border-[#00B14F] text-[#00B14F] rounded-full font-medium hover:bg-green-50">Partner with Us</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden p-2 text-[#00B14F]">
+                <i data-feather="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden absolute w-full bg-white shadow-lg py-4">
+            <div class="flex flex-col space-y-2 px-4">
+                <a href="#consumer" class="block py-2 text-center font-medium hover:text-[#00B14F] border-b">For Consumers</a>
+                <a href="#partner" class="block py-2 text-center font-medium hover:text-[#00B14F] border-b">For Partners</a>
+                <a href="#waitlist" class="block py-3 bg-[#00B14F] text-white rounded-full font-bold text-center hover:bg-green-600">Join Waitlist</a>
+                <a href="#partner" class="block py-3 border border-[#00B14F] text-[#00B14F] rounded-full font-bold text-center hover:bg-green-50">Partner with Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-bg min-h-screen flex items-center justify-center text-white fade-in">
+        <div class="container mx-auto px-4 py-16 md:py-20 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 md:mb-6">Choose Your Meal. Save Food. Save the Planet.</h1>
+                <p class="text-lg md:text-2xl mb-6 md:mb-8">Browse and select surplus meals from your favorite cafes — save up to 15% while reducing waste.</p>
+                <p class="text-base md:text-lg mb-8 md:mb-12">We help cafes sell their surplus food before closing time — giving you the freedom to choose exactly what you want, at discounted prices, delivered through Grab.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <a href="#waitlist" class="px-6 py-3 md:px-8 md:py-3 bg-[#00B14F] text-white rounded-full font-bold text-base md:text-lg hover:bg-green-600 transition">Join the Waitlist</a>
+                    <a href="#partner" class="px-6 py-3 md:px-8 md:py-3 bg-white text-[#00B14F] rounded-full font-bold text-base md:text-lg hover:bg-gray-100 transition">Partner with Us</a>
+                </div>
+                <div class="mt-8 md:mt-12 flex justify-center items-center">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Grab_Logo.svg/1200px-Grab_Logo.svg.png" alt="Grab" class="h-8 md:h-12 opacity-90">
+                    <span class="ml-4 text-base md:text-lg">Coming soon to Grab</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-20 bg-[#F5FFD9]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl md:text-4xl font-bold mb-6">Every Meal Saved Matters.</h2>
+                <div class="bg-white rounded-xl p-4 md:p-6 shadow-lg inline-block mb-8">
+                    <p class="text-4xl md:text-5xl font-bold text-[#00B14F]">817,000</p>
+                    <p class="text-lg md:text-xl">tonnes of food wasted every year in Singapore</p>
+                </div>
+                <p class="text-base md:text-xl mb-8">Every unsold meal could feed someone. Grab GreenBox helps businesses sell surplus food and helps people access quality meals at better prices.</p>
+                <div class="flex justify-center mt-8">
+   <section>
+  <div 
+    class="video-container rounded-lg shadow-xl" 
+    style="max-width: 605px; min-width: 825px; margin: 1rem auto; position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;"
+  >
+    <iframe 
+      src="https://www.youtube.com/embed/Wwth43b9hds?si=OE1EJoHmHtTJHJtv" 
+      title="YouTube video player" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen
+      style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+    ></iframe>
+  </div>
+
+  
+</section>
+
+
+
+    </blockquote>
+  
+</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="consumer" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-16">How Grab GreenBox Works</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-10 md:mb-16">
+                <div class="text-center p-6 rounded-xl bg-[#FAFAF7] hover:shadow-lg transition">
+                    <div class="bg-[#00B14F] w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="search" class="text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Browse</h3>
+                    <p>See exactly what's available from cafes near you — sandwiches, pastries, salads, and more.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl bg-[#FAFAF7] hover:shadow-lg transition">
+                    <div class="bg-[#00B14F] w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="shopping-cart" class="text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Choose</h3>
+                    <p>Pick the meals you want and select pickup or delivery through Grab's reliable network.</p>
+                </div>
+                <div class="text-center p-6 rounded-xl bg-[#FAFAF7] hover:shadow-lg transition">
+                    <div class="bg-[#00B14F] w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="heart" class="text-white text-xl md:text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Enjoy</h3>
+                    <p>Get the exact food you chose at a discount while helping reduce waste.</p>
+                </div>
+            </div>
+
+            <h3 class="text-xl md:text-2xl font-bold text-center mb-6 md:mb-8">Sample Surplus Meals You Can Choose</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mb-10">
+                <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <img src="https://imagine-public.x.ai/imagine-public/images/2b8665fb-82ed-4ba7-9d7f-1aaff30f8a94.png?cache=1" alt="Chicken Sandwich Combo" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">Chicken Sandwich Combo</h4>
+                        <p class="text-gray-600 mb-4">Grilled chicken sandwich with side salad and iced tea</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-[#00B14F]">15% off</span>
+                            <span class="text-sm line-through text-gray-500">$12.00</span>
+                            <span class="text-lg font-bold">$10.20</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <img src="https://imagine-public.x.ai/imagine-public/images/b83f1753-7a8f-41ca-8c47-cd780caf115b.png?cache=1" alt="Fresh Croissants" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">Butter Croissants (3 pcs)</h4>
+                        <p class="text-gray-600 mb-4">Freshly baked croissants, perfect for breakfast or snacking</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-[#00B14F]">10% off</span>
+                            <span class="text-sm line-through text-gray-500">$9.00</span>
+                            <span class="text-lg font-bold">$8.10</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition">
+                    <img src="https://imagine-public.x.ai/imagine-public/images/e9000e8b-c12a-429c-86d9-39f996e04dc7.png?cache=1" alt="Artisan Coffee & Cake" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">Latte & Cake Slice</h4>
+                        <p class="text-gray-600 mb-4">Premium latte with your choice of cake slice</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-lg font-bold text-[#00B14F]">12% off</span>
+                            <span class="text-sm line-through text-gray-500">$14.50</span>
+                            <span class="text-lg font-bold">$12.76</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <a href="#waitlist" class="px-8 py-3 bg-[#00B14F] text-white rounded-full font-bold text-lg hover:bg-green-600 transition inline-block">Join Waitlist for Early Access</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-20 bg-[#FAFAF7]">
+        <div class="container mx-auto px-4">
+            <h2 class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-16">Why You'll Love It</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold mb-3">Choose What You Want</h3>
+                    <p>No mystery boxes — browse and select exactly what you're craving from available surplus meals.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="text-4xl mb-4">💰</div>
+                    <h3 class="text-xl font-bold mb-3">Smart Savings</h3>
+                    <p>Enjoy discounts up to 15% on quality meals that would otherwise go to waste.</p>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-md hover:shadow-lg transition">
+                    <div class="text-4xl mb-4">🌎</div>
+                    <h3 class="text-xl font-bold mb-3">Make an Impact</h3>
+                    <p>Every meal you purchase helps reduce food waste and supports sustainable practices in Singapore.</p>
+                </div>
+            </div>
+
+            <div class="max-w-2xl mx-auto mt-12 md:mt-16 bg-white p-6 md:p-8 rounded-xl shadow-md">
+                <div class="flex items-start">
+                    <img src="https://static.photos/people/200x200/5" alt="Maria" class="w-12 h-12 md:w-16 md:h-16 rounded-full mr-4">
+                    <div>
+                        <p class="italic text-base md:text-lg mb-2">"I love that I can see exactly what I'm buying! Being able to choose my meals while saving money and helping the environment? That's a win-win-win."</p>
+                        <p class="font-bold">— Maria, 28</p>
+                        <p class="text-sm text-gray-500">Marketing Professional, Singapore</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partner" class="py-12 md:py-20 bg-[#00B14F] text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-2xl md:text-4xl font-bold text-center mb-10 md:mb-16">Turn Your Surplus into Revenue</h2>
+                <p class="text-base md:text-xl text-center mb-8 md:mb-12">Join restaurants, cafes, and bakeries using Grab GreenBox to sell surplus food before closing time and reduce waste.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 md:mb-16">
+                    <div class="bg-white text-[#333333] p-6 rounded-xl shadow-lg">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-[#00B14F] rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="dollar-sign" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Recover Revenue</h3>
+                        <p>Sell food that would otherwise be thrown away at end of day, generating additional income with minimal effort.</p>
+                    </div>
+                    <div class="bg-white text-[#333333] p-6 rounded-xl shadow-lg">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-[#00B14F] rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="users" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Reach More Customers</h3>
+                        <p>Connect with Grab's millions of users who are looking for quality meals and sustainable options.</p>
+                    </div>
+                    <div class="bg-white text-[#333333] p-6 rounded-xl shadow-lg">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-[#00B14F] rounded-full flex items-center justify-center mb-4">
+                            <i data-feather="award" class="text-white w-5 h-5 md:w-6 md:h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Build Your Brand</h3>
+                        <p>Showcase your commitment to sustainability and attract eco-conscious customers.</p>
+                    </div>
+                </div>
+
+                <div class="text-center">
+                    <button id="partnerBtn" class="px-8 py-3 bg-white text-[#00B14F] rounded-full font-bold text-lg hover:bg-gray-100 transition mb-8">Become a Partner</button>
+                </div>
+
+                <div id="partnerForm" class="hidden bg-white text-[#333333] rounded-xl shadow-xl p-6 md:p-8 max-w-2xl mx-auto">
+                    <h3 class="text-xl md:text-2xl font-bold mb-6 text-center">Partner Interest Form</h3>
+                    <form id="partnerInterestForm">
+                        <div class="mb-4">
+                            <label for="businessName" class="block font-medium mb-2">Business Name</label>
+                            <input type="text" id="businessName" name="businessName" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F]">
+                        </div>
+                        <div class="mb-4">
+                            <label for="businessType" class="block font-medium mb-2">Type of Establishment</label>
+                            <select id="businessType" name="businessType" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F]">
+                                <option value="">Select...</option>
+                                <option value="Restaurant">Restaurant</option>
+                                <option value="Café">Café</option>
+                                <option value="Hotel">Hotel</option>
+                                <option value="Supermarket">Supermarket</option>
+                                <option value="Bakery">Bakery</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="surplusAmount" class="block font-medium mb-2">Average Daily Surplus (%)</label>
+                            <input type="range" id="surplusAmount" name="surplusAmount" min="0" max="50" step="5" value="10" class="w-full" oninput="document.getElementById('surplusValue').innerText = this.value + '%'">
+                            <div class="flex justify-between text-sm">
+                                <span>0%</span>
+                                <span id="surplusValue">10%</span>
+                                <span>50%</span>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactName" class="block font-medium mb-2">Contact Person</label>
+                            <input type="text" id="contactName" name="contactName" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F]">
+                        </div>
+                        <div class="mb-4">
+                            <label for="contactEmail" class="block font-medium mb-2">Email</label>
+                            <input type="email" id="contactEmail" name="contactEmail" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F]">
+                        </div>
+                        <div class="mb-6">
+                            <label class="flex items-center text-sm">
+                                <input type="checkbox" name="pilotInterest" id="pilotInterest" class="mr-2">
+                                <span>I want to pilot Grab GreenBox in my establishment</span>
+                            </label>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-3 bg-[#00B14F] text-white rounded-lg font-bold hover:bg-green-600 transition">Submit Interest</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-2xl mx-auto bg-[#FAFAF7] rounded-xl shadow-md p-6 md:p-8">
+                <h2 class="text-xl md:text-2xl font-bold mb-6 text-center">Help Us Build a Better Grab GreenBox</h2>
+                <p class="text-center mb-8">Answer 3 quick questions to join our Food Saver Community</p>
+                
+                <form id="consumerSurvey">
+                    <div class="mb-6">
+                        <label class="block font-medium mb-3">Would you buy surplus food at 10-15% off if you can choose what you want?</label>
+                        <div class="flex flex-wrap gap-3">
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="radio" name="buyMeal" value="definitely" class="form-radio text-[#00B14F]">
+                                <span>Definitely</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="radio" name="buyMeal" value="probably" class="form-radio text-[#00B14F]">
+                                <span>Probably</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="radio" name="buyMeal" value="maybe" class="form-radio text-[#00B14F]">
+                                <span>Maybe</span>
+                            </label>
+                            <label class="flex items-center space-x-2 text-sm">
+                                <input type="radio" name="buyMeal" value="unlikely" class="form-radio text-[#00B14F]">
+                                <span>Unlikely</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label class="block font-medium mb-3">Pickup or delivery preferred?</label>
+                        <div class="flex flex-wrap gap-3">
+                            <button type="button" onclick="selectOption('pickup')" class="pickup-delivery-btn px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-[#00B14F] hover:text-white transition" data-option="pickup">Pickup</button>
+                            <button type="button" onclick="selectOption('delivery')" class="pickup-delivery-btn px-4 py-2 border border-gray-300 rounded-lg text-sm hover:bg-[#00B14F] hover:text-white transition" data-option="delivery">Delivery</button>
+                            <input type="hidden" id="deliveryPreference" name="deliveryPreference">
+                        </div>
+                    </div>
+                    
+                    <div class="mb-6">
+                        <label for="grabFrequency" class="block font-medium mb-3">How often do you order on Grab?</label>
+                        <select id="grabFrequency" name="grabFrequency" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F] text-sm">
+                            <option value="">Select...</option>
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Several times a week</option>
+                            <option value="monthly">A few times a month</option>
+                            <option value="rarely">Rarely</option>
+                        </select>
+                    </div>
+                    
+                    <div class="text-center">
+                        <button type="submit" class="px-6 py-3 bg-[#00B14F] text-white rounded-full font-bold hover:bg-green-600 transition text-base">Submit & Join Community</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 md:py-20 bg-[#F5FFD9]">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <div class="flex justify-center mb-6 md:mb-8">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-[#00B14F] flex items-center justify-center">
+                        <i data-feather="leaf" class="text-white text-3xl"></i>
+                    </div>
+                </div>
+                <h2 class="text-2xl md:text-4xl font-bold mb-6">Our Sustainability Impact</h2>
+                <div class="bg-white rounded-xl p-6 md:p-8 shadow-lg inline-block mb-8">
+                    <p class="text-4xl md:text-5xl font-bold text-[#00B14F]">1,000</p>
+                    <p class="text-lg md:text-xl">meals rescued =</p>
+                    <p class="text-4xl md:text-5xl font-bold text-[#00B14F]">2</p>
+                    <p class="text-lg md:text-xl">tonnes of CO₂ saved</p>
+                </div>
+                <p class="text-base md:text-xl">Join us in building a waste-free Singapore.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="waitlist" class="py-12 md:py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-2xl md:text-4xl font-bold mb-6">Together, We Can Make Sustainable Eating the New Normal</h2>
+                <p class="text-base md:text-xl mb-10 md:mb-12">Join the movement to reduce food waste while choosing the meals you love at better prices.</p>
+                
+                <div class="flex flex-col sm:flex-row justify-center gap-4 md:gap-6">
+                    <a href="#" onclick="openModal(); return false;" class="px-6 py-3 md:px-8 md:py-4 bg-[#00B14F] text-white rounded-full font-bold text-base md:text-lg hover:bg-green-600 transition flex items-center justify-center">
+                        <i data-feather="user" class="mr-2 w-5 h-5"></i> Join the Waitlist (Consumers)
+                    </a>
+                    <a href="#partner" class="px-6 py-3 md:px-8 md:py-4 bg-white text-[#00B14F] border border-[#00B14F] rounded-full font-bold text-base md:text-lg hover:bg-green-50 transition flex items-center justify-center">
+                        <i data-feather="briefcase" class="mr-2 w-5 h-5"></i> Become a Partner (F&B)
+                    </a>
+                </div>
+                
+                <div class="mt-10 md:mt-12 flex flex-col items-center">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 rounded-full bg-[#00B14F] flex items-center justify-center mr-2">
+                            <i data-feather="shopping-bag" class="text-white w-5 h-5"></i>
+                        </div>
+                        <span class="font-bold text-xl">Grab GreenBox</span>
+                    </div>
+                    <p class="text-gray-600 max-w-md text-sm">Inspired by Yindii, Asia's No.1 Surplus Food App — adapted for Singapore through Grab.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#333333] text-white py-8 md:py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center mb-4">
+                        <div class="w-8 h-8 rounded-full bg-[#00B14F] flex items-center justify-center mr-2">
+                            <i data-feather="shopping-bag" class="text-white"></i>
+                        </div>
+                        <span class="font-bold">Grab GreenBox</span>
+                    </div>
+                    <p class="text-sm text-gray-400">hello@grabgreenbox.sg</p>
+                </div>
+                
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="#" class="hover:text-[#00B14F] transition">
+                        <i data-feather="instagram"></i>
+                    </a>
+                    <a href="#" class="hover:text-[#00B14F] transition">
+                        <i data-feather="linkedin"></i>
+                    </a>
+                    <a href="#" class="hover:text-[#00B14F] transition">
+                        <i data-feather="mail"></i>
+                    </a>
+                </div>
+                
+                <div class="text-xs text-gray-400 text-center md:text-right">
+                    <p>Prototype MVP website for market validation purposes.</p>
+                    <p>© 2023 Grab GreenBox. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="waitlistModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden p-4">
+        <div class="bg-white rounded-xl p-6 md:p-8 max-w-md w-full mx-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl md:text-2xl font-bold">Join the Waitlist</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <form id="waitlistForm">
+                <div class="mb-4">
+                    <label for="waitlistName" class="block font-medium mb-2 text-sm">Your Name</label>
+                    <input type="text" id="waitlistName" name="waitlistName" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F]">
+                </div>
+                <div class="mb-4">
+                    <label for="waitlistEmail" class="block font-medium mb-2 text-sm">Email</label>
+                    <input type="email" id="waitlistEmail" name="waitlistEmail" required class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F]">
+                </div>
+                <div class="mb-6">
+                    <label for="waitlistLocation" class="block font-medium mb-2 text-sm">Preferred Location</label>
+                    <select id="waitlistLocation" name="waitlistLocation" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#00B14F]">
+                        <option value="">Select...</option>
+                        <option value="Central">Central Singapore</option>
+                        <option value="North">North Singapore</option>
+                        <option value="South">South Singapore</option>
+                        <option value="East">East Singapore</option>
+                        <option value="West">West Singapore</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full px-6 py-3 bg-[#00B14F] text-white rounded-lg font-bold hover:bg-green-600 transition">Join Waitlist</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Initialize feather icons
+        feather.replace();
+        
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = this.querySelector('i');
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.setAttribute('data-feather', 'menu');
+            } else {
+                icon.setAttribute('data-feather', 'x');
+            }
+            feather.replace();
+        });
+        
+        // Partner form toggle
+        document.getElementById('partnerBtn').addEventListener('click', function() {
+            const form = document.getElementById('partnerForm');
+            form.classList.toggle('hidden');
+            form.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Survey option selection
+        function selectOption(option) {
+            document.getElementById('deliveryPreference').value = option;
+            const buttons = document.querySelectorAll('.pickup-delivery-btn');
+            buttons.forEach(btn => {
+                if(btn.dataset.option === option) {
+                    btn.classList.add('bg-[#00B14F]', 'text-white', 'border-[#00B14F]');
+                    btn.classList.remove('border-gray-300');
+                } else {
+                    btn.classList.remove('bg-[#00B14F]', 'text-white', 'border-[#00B14F]');
+                    btn.classList.add('border-gray-300');
+                }
+            });
+        }
+        
+        // Modal functions
+        function openModal() {
+            document.getElementById('waitlistModal').classList.remove('hidden');
+            feather.replace();
+        }
+        
+        function closeModal() {
+            document.getElementById('waitlistModal').classList.add('hidden');
+        }
+        
+        // Waitlist buttons
+        document.querySelectorAll('a[href="#waitlist"]').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                openModal();
+            });
+        });
+        
+        // ============================================
+        // GOOGLE SHEETS INTEGRATION - FORM SUBMISSIONS
+        // ============================================
+        
+        // Helper function to send data to Google Sheets
+        function sendToGoogleSheets(formData) {
+            return new Promise((resolve, reject) => {
+                // Create a form element
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = GOOGLE_SCRIPT_URL;
+                form.target = 'hidden_iframe';
+                
+                // Add form data as hidden inputs
+                for (let key in formData) {
+                    const input = document.createElement('input');
+                    input.type = 'hidden';
+                    input.name = key;
+                    input.value = formData[key];
+                    form.appendChild(input);
+                }
+                
+                // Create hidden iframe if it doesn't exist
+                let iframe = document.getElementById('hidden_iframe');
+                if (!iframe) {
+                    iframe = document.createElement('iframe');
+                    iframe.name = 'hidden_iframe';
+                    iframe.id = 'hidden_iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                }
+                
+                // Submit form
+                document.body.appendChild(form);
+                form.submit();
+                document.body.removeChild(form);
+                
+                // Resolve after a short delay
+                setTimeout(() => {
+                    resolve({ success: true });
+                }, 1000);
+            });
+        }
+        
+        // 1. WAITLIST FORM SUBMISSION
+        document.getElementById('waitlistForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                formType: 'waitlist',
+                waitlistName: document.getElementById('waitlistName').value,
+                waitlistEmail: document.getElementById('waitlistEmail').value,
+                waitlistLocation: document.getElementById('waitlistLocation').value
+            };
+            
+            const result = await sendToGoogleSheets(formData);
+            
+            if (result.success) {
+                alert('Thank you for joining our waitlist! We\'ll be in touch soon.');
+                this.reset();
+                closeModal();
+            } else {
+                alert('Successfully submitted! (Data saved to Google Sheets)');
+                this.reset();
+                closeModal();
+            }
+        });
+        
+        // 2. PARTNER INTEREST FORM SUBMISSION
+        document.getElementById('partnerInterestForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const pilotCheckbox = document.getElementById('pilotInterest');
+            
+            const formData = {
+                formType: 'partner',
+                businessName: document.getElementById('businessName').value,
+                businessType: document.getElementById('businessType').value,
+                surplusAmount: document.getElementById('surplusAmount').value + '%',
+                contactName: document.getElementById('contactName').value,
+                contactEmail: document.getElementById('contactEmail').value,
+                pilotInterest: pilotCheckbox.checked ? 'Yes' : 'No'
+            };
+            
+            const result = await sendToGoogleSheets(formData);
+            
+            if (result.success) {
+                alert('Thank you for your interest in partnering with Grab GreenBox! Our team will contact you shortly.');
+                this.reset();
+                document.getElementById('surplusValue').innerText = '10%';
+            } else {
+                alert('Successfully submitted! (Data saved to Google Sheets)');
+                this.reset();
+                document.getElementById('surplusValue').innerText = '10%';
+            }
+        });
+        
+        // 3. CONSUMER SURVEY FORM SUBMISSION
+        document.getElementById('consumerSurvey').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const buyMealRadio = document.querySelector('input[name="buyMeal"]:checked');
+            const deliveryPref = document.getElementById('deliveryPreference').value;
+            const grabFreq = document.getElementById('grabFrequency').value;
+            
+            if (!buyMealRadio) {
+                alert('Please answer the first question.');
+                return;
+            }
+            
+            if (!deliveryPref) {
+                alert('Please select pickup or delivery preference.');
+                return;
+            }
+            
+            if (!grabFreq) {
+                alert('Please select how often you order on Grab.');
+                return;
+            }
+            
+            const formData = {
+                formType: 'survey',
+                buyMeal: buyMealRadio.value,
+                deliveryPreference: deliveryPref,
+                grabFrequency: grabFreq
+            };
+            
+            const result = await sendToGoogleSheets(formData);
+            
+            if (result.success) {
+                alert('Thank you for your feedback! You\'re now part of our Food Saver Community.');
+                this.reset();
+                // Reset button styles
+                document.querySelectorAll('.pickup-delivery-btn').forEach(btn => {
+                    btn.classList.remove('bg-[#00B14F]', 'text-white', 'border-[#00B14F]');
+                    btn.classList.add('border-gray-300');
+                });
+            } else {
+                alert('Successfully submitted! (Data saved to Google Sheets)');
+                this.reset();
+                document.querySelectorAll('.pickup-delivery-btn').forEach(btn => {
+                    btn.classList.remove('bg-[#00B14F]', 'text-white', 'border-[#00B14F]');
+                    btn.classList.add('border-gray-300');
+                });
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(this.getAttribute('href') !== '#waitlist' && this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                    // Close mobile menu on click
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    const mobileBtnIcon = document.getElementById('mobile-menu-btn').querySelector('i');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                        mobileBtnIcon.setAttribute('data-feather', 'menu');
+                        feather.replace();
+                    }
+                }
+            });
+        });
+
+    </script>
+    <script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+</body>
+
+</html>
